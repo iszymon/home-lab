@@ -28,7 +28,7 @@ spec:
         nameOverride: postgresql
         fullnameOverride: postgresql
         global:
-          defaultStorageClass: "openebs-lvmpv"
+          #defaultStorageClass: "openebs-lvmpv"
           security:
             allowInsecureImages: "true"
         postgresqlSharedPreloadLibraries: "pgaudit,vector"
