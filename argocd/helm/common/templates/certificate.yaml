@@ -1,7 +1,7 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: tls-wildcard-lewandowskim-com
+  name: tls-wildcard-edgeofthe-cloud
   namespace: cert-manager
   labels:
     {{- include "common.labels" . | nindent 4 }}
@@ -15,6 +15,6 @@ spec:
     - "edgeofthe.cloud"
     - "*.edgeofthe.cloud"
   issuerRef:
-    name: lewandowskim-com
+    name: edgeofthe-cloud
     kind: ClusterIssuer
-  secretName: tls-wildcard-lewandowskim-com
+  secretName: tls-wildcard-edgeofthe-cloud
