@@ -39,7 +39,7 @@ spec:
             nginx.ingress.kubernetes.io/ssl-redirect: "true"
           host: "chat.edgeofthe.cloud"
           tls: true
-          existingSecret: "tls-wildcard-lewandowskim-com"
+          existingSecret: "tls-windcard-edgeofthe-cloud"
         persistence:
           enabled: true
           size: 5Gi

@@ -127,7 +127,7 @@ spec:
             extraTls:
               - hosts:
                 - argocd.edgeofthe.cloud
-                secretName: tls-wildcard-lewandowskim-com
+                secretName: tls-windcard-edgeofthe-cloud
         repoServer:
           autoscaling:
             enabled: true
