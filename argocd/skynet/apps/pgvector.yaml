@@ -34,7 +34,7 @@ spec:
         postgresqlSharedPreloadLibraries: "pgaudit,vector"
         image:
           registry: docker.io
-          repository: iszymo/pnostgres-vector
+          repository: iszymon/pnostgres-vector
           tag: 17.4.0
         primary:
           extendedConfiguration: |-

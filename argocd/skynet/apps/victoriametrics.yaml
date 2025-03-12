@@ -100,7 +100,7 @@ spec:
             tls:
             - hosts:
               - monitoring.edgeofthe.cloud
-              secretName: tls-windcard-edgeofthe-cloud
+              secretName: tls-wildcard-edgeofthe-cloud
           defaultDashboardsTimezone: cet
         extraObjects:
           - apiVersion: v1

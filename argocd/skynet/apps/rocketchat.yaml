@@ -49,6 +49,6 @@
 #             nginx.ingress.kubernetes.io/ssl-redirect: "true"
 #           path: /
 #           tls:
-#             - secretName: tls-windcard-edgeofthe-cloud
+#             - secretName: tls-wildcard-edgeofthe-cloud
 #               hosts:
 #                 - rocketchat.edgeofthe.cloud

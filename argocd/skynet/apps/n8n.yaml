@@ -40,7 +40,7 @@
 #           tls:
 #             - hosts:
 #                 - n8n.edgeofthe.cloud
-#               secretName: tls-windcard-edgeofthe-cloud
+#               secretName: tls-wildcard-edgeofthe-cloud
 #         main:
 #           persistence:
 #             enabled: true

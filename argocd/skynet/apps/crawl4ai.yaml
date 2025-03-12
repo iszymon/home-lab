@@ -40,4 +40,4 @@ spec:
           tls:
             - hosts:
                 - crawl4ai.edgeofthe.cloud
-              secretName: tls-windcard-edgeofthe-cloud
+              secretName: tls-wildcard-edgeofthe-cloud

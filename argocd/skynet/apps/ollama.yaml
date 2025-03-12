@@ -61,6 +61,6 @@ spec:
                 - path: /
                   pathType: Prefix
           tls:
-            - secretName: tls-windcard-edgeofthe-cloud
+            - secretName: tls-wildcard-edgeofthe-cloud
               hosts:
                 - ollama.edgeofthe.cloud
