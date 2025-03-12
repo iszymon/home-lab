@@ -29,7 +29,6 @@ spec:
         ollama:
           gpu:
             enabled: true
-            type: "amd"
           models:
             pull:
               - deepseek-r1:8b
