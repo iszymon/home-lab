@@ -1,0 +1,28 @@
+kind: Application
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: common
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: 'common'
+    server: 'https://kubernetes.default.svc'
+  project: apps
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ApplyOutOfSyncOnly=true
+    - PruneLast=true
+  source:
+    path: 'argocd/helm/common'
+    repoURL: https://github.com/iszymon/home-lab.git
+    targetRevision: HEAD
+    helm:
+      values: |-
+        nameOverride: common
+        fullnameOverride: common
