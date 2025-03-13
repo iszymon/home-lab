@@ -1,55 +1,55 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: n8n
-#   namespace: argocd
-#   finalizers:
-#   - resources-finalizer.argocd.argoproj.io
-# spec:
-#   destination:
-#     namespace: 'n8n'
-#     server: 'https://kubernetes.default.svc'
-#   project: apps
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#     syncOptions:
-#     - CreateNamespace=true
-#     - ApplyOutOfSyncOnly=true
-#     - PruneLast=true
-#   source:
-#     repoURL: '8gears.container-registry.com/library'
-#     chart: n8n
-#     path: n8n
-#     targetRevision: 1.0.4
-#     helm:
-#       values: |-
-#         nameOverride: n8n
-#         fullnameOverride: n8n
-#         ingress:
-#           enabled: true
-#           annotations:
-#             nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-#             nginx.ingress.kubernetes.io/ssl-redirect: "true"
-#           className: "nginx"
-#           hosts:
-#             - host: n8n.edgeofthe.cloud
-#               paths:
-#                 - "/"
-#           tls:
-#             - hosts:
-#                 - n8n.edgeofthe.cloud
-#               secretName: tls-wildcard-edgeofthe-cloud
-#         main:
-#           persistence:
-#             enabled: true
-#             type: dynamic
-#             storageClass: "openebs-lvmpv"
-#             size: 5Gi
-#           extraEnv:
-#             N8N_EDITOR_BASE_URL:
-#               value: "https://n8n.edgeofthe.cloud"
-#             WEBHOOK_URL:
-#               value: "https://n8n.edgeofthe.cloud"
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: n8n
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: 'n8n'
+    server: 'https://kubernetes.default.svc'
+  project: apps
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ApplyOutOfSyncOnly=true
+    - PruneLast=true
+  source:
+    repoURL: '8gears.container-registry.com/library'
+    chart: n8n
+    path: n8n
+    targetRevision: 1.0.4
+    helm:
+      values: |-
+        nameOverride: n8n
+        fullnameOverride: n8n
+        ingress:
+          enabled: true
+          annotations:
+            nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+            nginx.ingress.kubernetes.io/ssl-redirect: "true"
+          className: "nginx"
+          hosts:
+            - host: n8n.edgeofthe.cloud
+              paths:
+                - "/"
+          tls:
+            - hosts:
+                - n8n.edgeofthe.cloud
+              secretName: tls-wildcard-edgeofthe-cloud
+        main:
+          persistence:
+            enabled: true
+            type: dynamic
+            storageClass: "openebs-lvmpv"
+            size: 5Gi
+          extraEnv:
+            N8N_EDITOR_BASE_URL:
+              value: "https://n8n.edgeofthe.cloud"
+            WEBHOOK_URL:
+              value: "https://n8n.edgeofthe.cloud"
 
