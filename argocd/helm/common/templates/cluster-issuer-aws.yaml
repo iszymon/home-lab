@@ -1,10 +1,11 @@
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
-  name: letsencrypt-prod
+  name: edgeofthe-cloud
+  namespace: cert-manager
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
 spec:
-  acme:
-    ...
     solvers:
     - dns01:
         route53:
