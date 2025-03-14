@@ -10,7 +10,7 @@ spec:
     solvers:
     - dns01:
         route53:
-          region: eu-central-1
+          region: us-east-1
           accessKeyIDSecretRef:
             name: aws-route53-secret
             key: access-key-id
