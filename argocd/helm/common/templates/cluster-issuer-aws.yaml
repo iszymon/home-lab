@@ -8,6 +8,8 @@ metadata:
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: edgeofthe-cloud-issuer-account-key
     solvers:
     - dns01:
         route53:
