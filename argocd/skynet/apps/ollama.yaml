@@ -36,6 +36,7 @@ spec:
               - qwen2.5-coder:14b
               - llama3.1:8b
               - bge-m3:567m
+              - snowflake-arctic-embed
             run: []
             create:
               - name: bge-m3-ctx32768
