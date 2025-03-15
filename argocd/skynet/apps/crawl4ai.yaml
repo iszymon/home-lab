@@ -42,9 +42,9 @@ spec:
                 - crawl4ai.edgeofthe.cloud
               secretName: tls-wildcard-edgeofthe-cloud
           env:
-          - name: CRAWL4AI_API_TOKEN
-              secretKeyRef: 
-                name: crawl4ai
-                key: CRAWL4AI_API_TOKEN
+            - name: CRAWL4AI_API_TOKEN
+                secretKeyRef: 
+                  name: crawl4ai
+                  key: CRAWL4AI_API_TOKEN
 
 
