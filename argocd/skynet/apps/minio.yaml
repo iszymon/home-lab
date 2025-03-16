@@ -1,36 +1,52 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: minio
-#   namespace: argocd
-#   finalizers:
-#   - resources-finalizer.argocd.argoproj.io
-# spec:
-#   destination:
-#     namespace: 'minio'
-#     server: 'https://kubernetes.default.svc'
-#   project: apps
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
-#     syncOptions:
-#     - CreateNamespace=true
-#     - ApplyOutOfSyncOnly=true
-#     - PruneLast=true
-#   source:
-#     # https://operator.min.io
-#     repoURL: https://operator.min.io
-#     chart: operator
-#     targetRevision: 7.0.0
-#     helm:
-#       values: |-
-#         nameOverride: minio
-#         fullnameOverride: minio
-#         operator:
-#           replicaCount: 2
-#         resources:
-#           requests:
-#             cpu: 200m
-#             memory: 256Mi
-#             ephemeral-storage: 500Mi
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minio
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: 'minio'
+    server: 'https://kubernetes.default.svc'
+  project: apps
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ApplyOutOfSyncOnly=true
+    - PruneLast=true
+  source:
+    # https://charts.bitnami.com/bitnami
+    repoURL: https://charts.bitnami.com/bitnami
+    chart: bitnami/minio
+    targetRevision: 2025.3.12
+    helm:
+      values: |-
+        nameOverride: "minio"
+        fullnameOverride: "minio"
+        auth:
+          rootUser: admin
+          existingSecret: ""
+        provisioning:
+          resourcesPreset: "nano
+          resources: {}
+          policies: []
+          users: []
+          usersExistingSecrets: []
+          groups: []
+          buckets: []
+        containerPorts:
+          api: 9000
+          console: 9001
+        ingress:
+          ingressClassName: "nginx"
+          hostname: minio.edgeofthe.cloud
+          path: /
+          tls: true
+          extraTls:
+          - hosts:
+              - minio.edgeofthe.cloud
+            secretName: tls-wildcard-edgeofthe-cloud
