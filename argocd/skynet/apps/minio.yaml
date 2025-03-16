@@ -21,8 +21,7 @@ spec:
   source:
     # https://charts.bitnami.com/bitnami
     repoURL: https://charts.bitnami.com/bitnami
-    chart: bitnami
-    path: minio
+    chart: minio
     targetRevision: 15.0.7
     helm:
       values: |-
