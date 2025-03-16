@@ -27,23 +27,11 @@ spec:
       values: |-
         nameOverride: "minio"
         fullnameOverride: "minio"
-        auth:
-          rootUser: admin
-        provisioning:
-          resourcesPreset: "nano"
-          policies: []
-          users: []
-          usersExistingSecrets: []
-          groups: []
-          buckets: []
-        containerPorts:
-          api: 9000
-          console: 9001
         ingress:
+          enabled: true
           ingressClassName: "nginx"
           hostname: minio.edgeofthe.cloud
           path: /
-          tls: true
           extraTls:
           - hosts:
               - minio.edgeofthe.cloud
