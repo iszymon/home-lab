@@ -1,36 +1,36 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: minio
-  namespace: argocd
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
-spec:
-  destination:
-    namespace: 'minio'
-    server: 'https://kubernetes.default.svc'
-  project: apps
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-    - CreateNamespace=true
-    - ApplyOutOfSyncOnly=true
-    - PruneLast=true
-  source:
-    # https://operator.min.io
-    repoURL: https://operator.min.io
-    chart: operator
-    targetRevision: 7.0.0
-    helm:
-      values: |-
-        nameOverride: minio
-        fullnameOverride: minio
-        operator:
-          replicaCount: 2
-        resources:
-          requests:
-            cpu: 200m
-            memory: 256Mi
-            ephemeral-storage: 500Mi
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: minio
+#   namespace: argocd
+#   finalizers:
+#   - resources-finalizer.argocd.argoproj.io
+# spec:
+#   destination:
+#     namespace: 'minio'
+#     server: 'https://kubernetes.default.svc'
+#   project: apps
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#     - CreateNamespace=true
+#     - ApplyOutOfSyncOnly=true
+#     - PruneLast=true
+#   source:
+#     # https://operator.min.io
+#     repoURL: https://operator.min.io
+#     chart: operator
+#     targetRevision: 7.0.0
+#     helm:
+#       values: |-
+#         nameOverride: minio
+#         fullnameOverride: minio
+#         operator:
+#           replicaCount: 2
+#         resources:
+#           requests:
+#             cpu: 200m
+#             memory: 256Mi
+#             ephemeral-storage: 500Mi
