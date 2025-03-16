@@ -31,7 +31,7 @@ spec:
           rootUser: admin
           existingSecret: ""
         provisioning:
-          resourcesPreset: "nano
+          resourcesPreset: "nano"
           resources: {}
           policies: []
           users: []
