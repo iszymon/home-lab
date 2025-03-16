@@ -32,7 +32,6 @@ spec:
           existingSecret: ""
         provisioning:
           resourcesPreset: "nano"
-          resources: {}
           policies: []
           users: []
           usersExistingSecrets: []
