@@ -31,8 +31,8 @@ spec:
         auth:
           existingSecret: "minio-user-password"
           secretKeys:
-            rootUser: minioUser
-            rootPassword: minioPassword
+            rootUser: root-user
+            rootPassword: root-password
         ingress:
           enabled: true
           ingressClassName: "nginx"
