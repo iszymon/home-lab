@@ -28,6 +28,11 @@ spec:
       values: |-
         nameOverride: "minio"
         fullnameOverride: "minio"
+        auth:
+          existingSecret: "minio-user-password"
+          secretKeys:
+            rootUser: minioUser
+            rootPassword: minioPassword
         ingress:
           enabled: true
           ingressClassName: "nginx"
@@ -37,3 +42,19 @@ spec:
           - hosts:
               - minio.edgeofthe.cloud
             secretName: tls-wildcard-edgeofthe-cloud
+        extraDeploy:
+          - apiVersion: external-secrets.io/v1beta1
+            kind: ExternalSecret
+            metadata:
+              name: minio-user-password
+            spec:
+              secretStoreRef:
+                name: aws-parameter-store
+                kind: ClusterSecretStore
+              refreshInterval: "1h"
+              target:
+                name: minio-user-password
+                deletionPolicy: "Delete"
+              dataFrom:
+                - extract:
+                    key: "/homelab/minio-user-password" 
