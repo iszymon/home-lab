@@ -22,10 +22,15 @@ spec:
     # https://operator.min.io
     repoURL: https://operator.min.io
     chart: operator
-    targetRevision: 4.3.7
+    targetRevision: 7.0.0
     helm:
       values: |-
         nameOverride: minio
         fullnameOverride: minio
         operator:
           replicaCount: 2
+        resources:
+          requests:
+            cpu: 200m
+            memory: 256Mi
+            ephemeral-storage: 500Mi
