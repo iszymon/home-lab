@@ -29,7 +29,6 @@ spec:
         fullnameOverride: "minio"
         auth:
           rootUser: admin
-          existingSecret: ""
         provisioning:
           resourcesPreset: "nano"
           policies: []
