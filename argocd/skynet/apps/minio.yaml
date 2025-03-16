@@ -19,11 +19,13 @@ spec:
     - ApplyOutOfSyncOnly=true
     - PruneLast=true
   source:
-    # https://github.com/kubernetes/ingress-nginx/tree/main/charts/ingress-nginx
+    # https://operator.min.io
     repoURL: https://operator.min.io
     chart: minio-operator
     targetRevision: 4.3.7
     helm:
       values: |-
+        nameOverride: minio
+        fullnameOverride: minio
         operator:
           replicaCount: 2
