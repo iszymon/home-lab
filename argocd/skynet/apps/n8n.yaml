@@ -52,4 +52,10 @@ spec:
               value: "https://n8n.edgeofthe.cloud"
             WEBHOOK_URL:
               value: "https://n8n.edgeofthe.cloud"
-
+          extraVolumes:
+            - name: share
+              persistentVolumeClaim:
+                claimName: filebrowser-rootdir
+          extraVolumeMounts:
+            - name: share
+              mountPath: /n8n/share
