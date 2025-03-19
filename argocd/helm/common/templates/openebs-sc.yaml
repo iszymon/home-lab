@@ -13,3 +13,4 @@ parameters:
   storage: "lvm"
   volgroup: "storage"
   fsType: "ext4"
+  shared: "yes"
