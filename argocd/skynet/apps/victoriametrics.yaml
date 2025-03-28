@@ -80,7 +80,7 @@ spec:
                 metrics_path: '/metrics'
                 scheme: http
                 static_configs:
-                  - targets: ['gpu-operator-metrics-exporter.gpu-operator.svc.cluster.local:5000']
+                  - targets: ['gpu-operator-metrics-exporter.gpu-operator.svc.cluster.local:8080']
         grafana:
           enabled: true
           resources:
@@ -2117,7 +2117,7 @@ spec:
                   },
                   "timepicker": {},
                   "timezone": "browser",
-                  "title": "AMD GPU usage",
+                  "title": "nVidia GPU usage",
                   "uid": "fe0ayyeeoxvy8f",
                   "version": 1,
                   "weekStart": ""
