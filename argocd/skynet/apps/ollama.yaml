@@ -33,6 +33,7 @@ spec:
             pull:
               - deepseek-r1:8b
               - deepseek-r1:14b
+              - deepskee-r1:32b
               - qwen2.5-coder:14b
               - llama3.1:8b
               - bge-m3:567m
