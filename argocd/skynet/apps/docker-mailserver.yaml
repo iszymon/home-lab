@@ -35,13 +35,10 @@ spec:
           ingressClassName: nginx
           annotations: {}
           host: rspamd.edgeofthe.cloud
-          paths:
-            - path: /
-              pathType: ImplementationSpecific
+          path: /
           tls:
-            - hosts:
-                - rspamd.edgeofthe.cloud
-              secretName: tls-wildcard-edgeofthe.cloud
+            enabled: true
+            secret: tls-wildcard-edgeofthe.cloud
         persistent_volume_claims:
           # Stores generated configuration files
           # https://docker-mailserver.github.io/docker-mailserver/edge/faq/#what-about-the-docker-datadmsconfig-directory
