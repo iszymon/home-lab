@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: filebrowser
+  name: docker-mailserver
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: 'n8n'
+    namespace: 'mail'
     server: 'https://kubernetes.default.svc'
   project: apps
   syncPolicy:
