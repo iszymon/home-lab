@@ -29,46 +29,46 @@ spec:
         deployment:
           env:
             OVERRIDE_HOSTNAME: mail.edgeofthe.cloud
-      persistent_volume_claims:
-        # Stores generated configuration files
-        # https://docker-mailserver.github.io/docker-mailserver/edge/faq/#what-about-the-docker-datadmsconfig-directory
-        mail-config:
-          enabled: true
-          size: 10Mi
-          annotations: {}
-          accessModes:
-            - ReadWriteOnce
-          storageClass:
-          selector: {}
-        mail-data:
-          enabled: true
-          existingClaim: ""
-          size: 10Gi
-          annotations: {}
-          accessModes:
-            - ReadWriteOnce
-          storageClass:
-          selector: {}
-        mail-state:
-          enabled: true
-          existingClaim: ""
-          size: 1Gi
-          annotations: {}
-          accessModes:
-            - ReadWriteOnce
-          storageClass:
-          selector: {}
-      
-        # Store mail logs
-        mail-log:
-          enabled: true
-          existingClaim: ""
-          size: 1Gi
-          annotations: {}
-          accessModes:
-            - ReadWriteOnce
-          storageClass:
-          selector: {}
+        persistent_volume_claims:
+          # Stores generated configuration files
+          # https://docker-mailserver.github.io/docker-mailserver/edge/faq/#what-about-the-docker-datadmsconfig-directory
+          mail-config:
+            enabled: true
+            size: 10Mi
+            annotations: {}
+            accessModes:
+              - ReadWriteOnce
+            storageClass:
+            selector: {}
+          mail-data:
+            enabled: true
+            existingClaim: ""
+            size: 10Gi
+            annotations: {}
+            accessModes:
+              - ReadWriteOnce
+            storageClass:
+            selector: {}
+          mail-state:
+            enabled: true
+            existingClaim: ""
+            size: 1Gi
+            annotations: {}
+            accessModes:
+              - ReadWriteOnce
+            storageClass:
+            selector: {}
+        
+          # Store mail logs
+          mail-log:
+            enabled: true
+            existingClaim: ""
+            size: 1Gi
+            annotations: {}
+            accessModes:
+              - ReadWriteOnce
+            storageClass:
+            selector: {}
 
 
         
