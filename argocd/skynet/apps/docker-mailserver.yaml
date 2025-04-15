@@ -30,15 +30,15 @@ spec:
           env:
             OVERRIDE_HOSTNAME: mail.edgeofthe.cloud
         rspamd:
-        ingress:
-          enabled: true
-          ingressClassName: nginx
-          annotations: {}
-          host: rspamd.edgeofthe.cloud
-          path: /
-          tls:
+          ingress:
             enabled: true
-            secret: tls-wildcard-edgeofthe-cloud
+            ingressClassName: nginx
+            annotations: {}
+            host: rspamd.edgeofthe.cloud
+            path: /
+            tls:
+              enabled: true
+              secret: tls-wildcard-edgeofthe-cloud
         persistent_volume_claims:
           # Stores generated configuration files
           # https://docker-mailserver.github.io/docker-mailserver/edge/faq/#what-about-the-docker-datadmsconfig-directory
