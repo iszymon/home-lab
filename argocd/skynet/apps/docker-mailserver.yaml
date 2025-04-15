@@ -34,7 +34,7 @@ spec:
         # https://docker-mailserver.github.io/docker-mailserver/edge/faq/#what-about-the-docker-datadmsconfig-directory
         mail-config:
           enabled: true
-          size: 100Mi
+          size: 10Mi
           annotations: {}
           accessModes:
             - ReadWriteOnce
