@@ -41,7 +41,7 @@ spec:
           tls:
             - hosts:
                 - filebrowser.edgeofthe.cloud
-              secretName: tls-wildcard-edgeofthe.cloud
+              secretName: tls-wildcard-edgeofthe-cloud
         resources:
           limits:
             cpu: 150m
