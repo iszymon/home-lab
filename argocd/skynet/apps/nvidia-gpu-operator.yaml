@@ -1,0 +1,55 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nvidia-gpu-operator
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: gpu-operator
+    server: https://kubernetes.default.svc
+  project: apps
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
+    syncOptions:
+    - CreateNamespace=true
+    - ApplyOutOfSyncOnly=true
+    - PruneLast=true
+  source:
+    repoURL: https://nvidia.github.io/gpu-operator
+    chart: gpu-operator
+    targetRevision: 2.14.0  # Use the latest stable version as appropriate
+    helm:
+      values: |-
+        operator:
+          defaultRuntime: nvidia
+        nodeStatusExporter:
+          enabled: true
+        toolkit:
+          enabled: true
+        driver:
+          enabled: true
+        devicePlugin:
+          enabled: true
+        driver:
+          resourceRequirements:
+            limits:
+              cpu: 100m
+              memory: 512Mi
+            requests:
+              cpu: 50m
+              memory: 256Mi
+        devicePlugin:
+          resourceRequirements:
+            limits:
+              cpu: 50m
+              memory: 128Mi
+            requests:
+              cpu: 25m
+              memory: 64Mi
