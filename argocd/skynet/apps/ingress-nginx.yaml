@@ -22,7 +22,7 @@ spec:
     # https://github.com/kubernetes/ingress-nginx/tree/main/charts/ingress-nginx
     repoURL: https://kubernetes.github.io/ingress-nginx
     chart: ingress-nginx
-    targetRevision: 4.12.0
+    targetRevision: 4.13.3
     helm:
       values: |-
         controller:
@@ -40,3 +40,5 @@ spec:
             maxReplicas: 3
             targetCPUUtilizationPercentage: 85
             targetMemoryUtilizationPercentage: 85
+          metrics:
+            enabled: true

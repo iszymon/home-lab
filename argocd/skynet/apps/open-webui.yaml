@@ -21,7 +21,7 @@ spec:
   source:
     repoURL: https://helm.openwebui.com/
     chart: open-webui
-    targetRevision: 5.20.0
+    targetRevision: 8.14.0
     helm:
       values: |-
         nameOverride: open-webui
@@ -44,4 +44,6 @@ spec:
         persistence:
           enabled: true
           size: 5Gi
-          storageClass: "openebs-lvmpv"
+        extraEnvVars:
+          - name: ENV
+            value: dev

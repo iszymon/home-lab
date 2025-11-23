@@ -22,11 +22,13 @@ spec:
     repoURL: '8gears.container-registry.com/library'
     chart: n8n
     path: n8n
-    targetRevision: 1.0.4
+    targetRevision: 1.1.0
     helm:
       values: |-
         nameOverride: n8n
         fullnameOverride: n8n
+        image:
+          tag: "1.120.2"
         ingress:
           enabled: true
           annotations:
@@ -45,17 +47,16 @@ spec:
           persistence:
             enabled: true
             type: dynamic
-            storageClass: "openebs-lvmpv"
             size: 5Gi
           extraEnv:
             N8N_EDITOR_BASE_URL:
               value: "https://n8n.idena.wf"
             WEBHOOK_URL:
               value: "https://n8n.idena.wf"
-          extraVolumes:
-            - name: share
-              persistentVolumeClaim:
-                claimName: filebrowser-rootdir
-          extraVolumeMounts:
-            - name: share
-              mountPath: /n8n/share
+          # extraVolumes:
+          #   - name: share
+          #     persistentVolumeClaim:
+          #       claimName: filebrowser-rootdir
+          # extraVolumeMounts:
+          #   - name: share
+          #     mountPath: /n8n/share

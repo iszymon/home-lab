@@ -21,41 +21,49 @@ spec:
   source:
     repoURL: https://otwld.github.io/ollama-helm/
     chart: ollama
-    targetRevision: 1.8.0
+    targetRevision: 1.34.0
     helm:
       values: |-
         nameOverride: ollama
         fullnameOverride: ollama
+        image:
+          tag: "0.12.10"
         ollama:
           gpu:
             enabled: true
+            type: "nvidia"
+            number: 2
           models:
             pull:
-              - deepseek-r1:8b
-              - deepseek-r1:14b
-              - qwen2.5-coder:14b
-              - llama3.1:8b
-              - bge-m3:567m
-              - snowflake-arctic-embed
+              - qwen3-coder:30b-a3b-q4_K_M
+              - qwen3-embedding:8b-fp16
             run: []
-            create:
-              - name: bge-m3-ctx32768
-                template: |
-                  FROM bge-m3:567m
-                  PARAMETER num_ctx 32768
+            create: []
+              # - name: embeddinggemma-32768
+              #   template: |
+              #     FROM embeddinggemma:300m
+              #     PARAMETER num_ctx 32768
+        resources:
+          requests:
+            memory: 4Gi
+            cpu: 2
         persistentVolume:
           enabled: true
-          size: 50Gi
-          storageClass: "openebs-lvmpv"
+          size: 200Gi
         extraEnv:
-          - name: OLLAMA_FLASH_ATTENTION
-            value: "1"
+          - name: OLLAMA_CONTEXT_LENGTH
+            value: "49152"
+        runtimeClassName: nvidia
         ingress:
           enabled: true
           className: "nginx"
           annotations:
             nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
             nginx.ingress.kubernetes.io/ssl-redirect: "true"
+            nginx.ingress.kubernetes.io/proxy-connect-timeout: "600"
+            nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+            nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+            nginx.ingress.kubernetes.io/proxy-body-size: "10m"
           hosts:
             - host: ollama.idena.wf
               paths:
