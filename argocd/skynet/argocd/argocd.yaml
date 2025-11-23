@@ -27,7 +27,7 @@ spec:
         nameOverride: argocd
         fullnameOverride: argocd
         global:
-          domain: argocd.edgeofthe.cloud
+          domain: argocd.idena.wf
         extraObjects:
           - apiVersion: argoproj.io/v1alpha1
             kind: Application
@@ -123,11 +123,11 @@ spec:
               nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
               nginx.ingress.kubernetes.io/ssl-passthrough: "true"
             ingressClassName: "nginx"
-            hostname: argocd.edgeofthe.cloud
+            hostname: argocd.idena.wf
             extraTls:
               - hosts:
-                - argocd.edgeofthe.cloud
-                secretName: tls-wildcard-edgeofthe-cloud
+                - argocd.idena.wf
+                secretName: tls-wildcard-idena-wf
         repoServer:
           autoscaling:
             enabled: true

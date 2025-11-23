@@ -57,11 +57,11 @@ spec:
             nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
             nginx.ingress.kubernetes.io/ssl-redirect: "true"
           hosts:
-            - host: ollama.edgeofthe.cloud
+            - host: ollama.idena.wf
               paths:
                 - path: /
                   pathType: Prefix
           tls:
-            - secretName: tls-wildcard-edgeofthe-cloud
+            - secretName: tls-wildcard-idena-wf
               hosts:
-                - ollama.edgeofthe.cloud
+                - ollama.idena.wf

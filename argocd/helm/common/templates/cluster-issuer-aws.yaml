@@ -1,7 +1,7 @@
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
-  name: edgeofthe-cloud
+  name: idena-wf
   namespace: cert-manager
   labels:
     {{- include "common.labels" . | nindent 4 }}
@@ -9,7 +9,7 @@ spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
-      name: edgeofthe-cloud-issuer-account-key
+      name: idena-wf-issuer-account-key
     solvers:
     - dns01:
         route53:

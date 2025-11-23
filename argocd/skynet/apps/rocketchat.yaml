@@ -39,7 +39,7 @@
 #           enabled: true
 #           storageClass: "openebs-lvmpv"
 #           size: 10Gi
-#         host: rocketchat.edgeofthe.cloud
+#         host: rocketchat.idena.wf
 #         ingress:
 #           enabled: true
 #           pathType: Prefix
@@ -49,6 +49,6 @@
 #             nginx.ingress.kubernetes.io/ssl-redirect: "true"
 #           path: /
 #           tls:
-#             - secretName: tls-wildcard-edgeofthe-cloud
+#             - secretName: tls-wildcard-idena-wf
 #               hosts:
-#                 - rocketchat.edgeofthe.cloud
+#                 - rocketchat.idena.wf

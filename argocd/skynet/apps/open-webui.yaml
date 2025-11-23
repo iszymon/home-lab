@@ -38,9 +38,9 @@ spec:
             nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
             nginx.ingress.kubernetes.io/ssl-redirect: "true"
             nginx.ingress.kubernetes.io/proxy-body-size: "64m"
-          host: "chat.edgeofthe.cloud"
+          host: "chat.idena.wf"
           tls: true
-          existingSecret: "tls-wildcard-edgeofthe-cloud"
+          existingSecret: "tls-wildcard-idena-wf"
         persistence:
           enabled: true
           size: 5Gi

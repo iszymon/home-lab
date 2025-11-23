@@ -34,13 +34,13 @@ spec:
             nginx.ingress.kubernetes.io/ssl-redirect: "true"
           className: "nginx"
           hosts:
-            - host: n8n.edgeofthe.cloud
+            - host: n8n.idena.wf
               paths:
                 - "/"
           tls:
             - hosts:
-                - n8n.edgeofthe.cloud
-              secretName: tls-wildcard-edgeofthe-cloud
+                - n8n.idena.wf
+              secretName: tls-wildcard-idena-wf
         main:
           persistence:
             enabled: true
@@ -49,9 +49,9 @@ spec:
             size: 5Gi
           extraEnv:
             N8N_EDITOR_BASE_URL:
-              value: "https://n8n.edgeofthe.cloud"
+              value: "https://n8n.idena.wf"
             WEBHOOK_URL:
-              value: "https://n8n.edgeofthe.cloud"
+              value: "https://n8n.idena.wf"
           extraVolumes:
             - name: share
               persistentVolumeClaim:

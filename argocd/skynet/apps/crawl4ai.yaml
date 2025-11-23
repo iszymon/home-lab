@@ -1,45 +1,45 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: crawl4ai
-  namespace: argocd
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
-spec:
-  destination:
-    namespace: 'crawl4ai'
-    server: 'https://kubernetes.default.svc'
-  project: apps
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-    - CreateNamespace=true
-    - ApplyOutOfSyncOnly=true
-    - PruneLast=true
-  source:
-    path: 'argocd/helm/crawl4ai'
-    repoURL: https://github.com/iszymon/home-lab.git
-    targetRevision: HEAD
-    helm:
-      values: |-
-        nameOverride: crawl4ai
-        fullnameOverride: crawl4ai
-        ingress:
-          enabled: true
-          annotations:
-            nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-            nginx.ingress.kubernetes.io/ssl-redirect: "true"
-          className: "nginx"
-          hosts:
-            - host: crawl4ai.edgeofthe.cloud
-              paths:
-                - path: /
-                  pathType: ImplementationSpecific
-          tls:
-            - hosts:
-                - crawl4ai.edgeofthe.cloud
-              secretName: tls-wildcard-edgeofthe-cloud
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: crawl4ai
+#   namespace: argocd
+#   finalizers:
+#   - resources-finalizer.argocd.argoproj.io
+# spec:
+#   destination:
+#     namespace: 'crawl4ai'
+#     server: 'https://kubernetes.default.svc'
+#   project: apps
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#     - CreateNamespace=true
+#     - ApplyOutOfSyncOnly=true
+#     - PruneLast=true
+#   source:
+#     path: 'argocd/helm/crawl4ai'
+#     repoURL: https://github.com/iszymon/home-lab.git
+#     targetRevision: HEAD
+#     helm:
+#       values: |-
+#         nameOverride: crawl4ai
+#         fullnameOverride: crawl4ai
+#         ingress:
+#           enabled: true
+#           annotations:
+#             nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+#             nginx.ingress.kubernetes.io/ssl-redirect: "true"
+#           className: "nginx"
+#           hosts:
+#             - host: crawl4ai.idena.wf
+#               paths:
+#                 - path: /
+#                   pathType: ImplementationSpecific
+#           tls:
+#             - hosts:
+#                 - crawl4ai.idena.wf
+#               secretName: tls-wildcard-idena-wf
 
 

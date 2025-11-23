@@ -34,14 +34,14 @@ spec:
             nginx.ingress.kubernetes.io/ssl-redirect: "true"
             nginx.ingress.kubernetes.io/proxy-body-size: "64m"
           hosts:
-            - host: filebrowser.edgeofthe.cloud
+            - host: filebrowser.idena.wf
               paths:
                 - path: /
                   pathType: ImplementationSpecific
           tls:
             - hosts:
-                - filebrowser.edgeofthe.cloud
-              secretName: tls-wildcard-edgeofthe-cloud
+                - filebrowser.idena.wf
+              secretName: tls-wildcard-idena-wf
         resources:
           limits:
             cpu: 150m
