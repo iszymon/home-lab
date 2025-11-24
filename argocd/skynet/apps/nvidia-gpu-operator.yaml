@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nvidia-gpu-operator
+  name: gpu-operator
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -14,42 +14,21 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    managedNamespaceMetadata:
-      labels:
-        pod-security.kubernetes.io/enforce: privileged
     syncOptions:
     - CreateNamespace=true
     - ApplyOutOfSyncOnly=true
     - PruneLast=true
   source:
-    repoURL: https://nvidia.github.io/gpu-operator
+    repoURL: https://helm.ngc.nvidia.com/nvidia
     chart: gpu-operator
-    targetRevision: 2.14.0  # Use the latest stable version as appropriate
+    targetRevision: v25.10.0
     helm:
       values: |-
-        operator:
-          defaultRuntime: nvidia
-        nodeStatusExporter:
-          enabled: true
-        toolkit:
-          enabled: true
-        driver:
-          enabled: true
-        devicePlugin:
-          enabled: true
-        driver:
-          resourceRequirements:
-            limits:
-              cpu: 100m
-              memory: 512Mi
-            requests:
-              cpu: 50m
-              memory: 256Mi
-        devicePlugin:
-          resourceRequirements:
-            limits:
-              cpu: 50m
-              memory: 128Mi
-            requests:
-              cpu: 25m
-              memory: 64Mi
+        nameOverride: gpu-operator
+        fullnameOverride: gpu-operator
+        controllerManager:
+          manager:
+            resources:
+              requests:
+                cpu: 10m
+                memory: 64Mi
