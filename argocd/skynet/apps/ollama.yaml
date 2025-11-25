@@ -35,8 +35,6 @@ spec:
             number: 1
           models:
             pull:
-              - qwen3-coder:30b-a3b-q4_K_M
-              - qwen3-embedding:8b-fp16
             run: []
             create: []
               # - name: embeddinggemma-32768
@@ -53,6 +51,7 @@ spec:
         extraEnv:
           - name: OLLAMA_CONTEXT_LENGTH
             value: "49152"
+        runtimeClassName: nvidia
         ingress:
           enabled: true
           className: "nginx"
