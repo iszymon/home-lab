@@ -38,3 +38,5 @@ spec:
             memory: 64Mi
         config:
           deviceDiscoveryStrategy: legacy
+        spec:
+          runtimeClassName: nvidia
