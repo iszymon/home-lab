@@ -36,7 +36,6 @@ spec:
           requests:
             cpu: 10m
             memory: 64Mi
+        runtimeClassName: nvidia
         config:
           deviceDiscoveryStrategy: legacy
-        spec:
-          runtimeClassName: nvidia
