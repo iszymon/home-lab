@@ -39,3 +39,12 @@ spec:
         runtimeClassName: nvidia
         config:
           deviceDiscoveryStrategy: legacy
+        # Disable CDI completely
+        cdi:
+          enabled: false
+        plugin:
+          passDeviceSpecs: false
+        # Remove CDI env vars
+        env:
+          - name: NVIDIA_VISIBLE_DEVICES
+            value: ""
