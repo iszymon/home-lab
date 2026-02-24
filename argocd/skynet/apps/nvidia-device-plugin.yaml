@@ -37,11 +37,17 @@ spec:
             cpu: 10m
             memory: 64Mi
         runtimeClassName: nvidia
+        # Inline config map to avoid external CM dependency
         config:
-          name: nvidia-device-plugin-config
-          deviceListStrategy: envvar
+          map:
+            default: |-
+              version: v1
+              deviceListStrategy: envvar
+              flags:
+                migStrategy: none
+          default: default
         securityContext:
-          privileged: true  # Full privileged for NVML/host libs access
+          privileged: true
           allowPrivilegeEscalation: true
         nodeSelector:
           nvidia.com/gpu.present: "true"
@@ -52,7 +58,4 @@ spec:
         dcgmExporter:
           enabled: false
         mpsControlDaemon:
-          enabled: false
-        # Force legacy, disable CDI hooks
-        containerRuntime:
           enabled: false
