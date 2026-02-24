@@ -24,12 +24,12 @@ spec:
   source:
     repoURL: https://nvidia.github.io/k8s-device-plugin
     chart: nvidia-device-plugin
-    targetRevision: 0.15.1
+    targetRevision: 0.17.4
     helm:
       values: |-
         nameOverride: nvidia-device-plugin
         fullnameOverride: nvidia-device-plugin
-        runtimeClassName: ""
+        runtimeClassName: nvidia
         resources:
           limits:
             cpu: 50m
@@ -44,8 +44,6 @@ spec:
         - key: nvidia.com/gpu
           operator: Exists
           effect: NoSchedule
-        nodeSelector:
-          nvidia.com/gpu.present: "true"
         dcgmExporter:
           enabled: false
         mpsControlDaemon:
