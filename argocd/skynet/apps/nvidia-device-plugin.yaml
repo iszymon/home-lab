@@ -7,8 +7,8 @@ metadata:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: 'nvidia-device-plugin'
-    server: 'https://kubernetes.default.svc'
+    namespace: nvidia-device-plugin
+    server: https://kubernetes.default.svc
   project: apps
   syncPolicy:
     automated:
@@ -39,7 +39,15 @@ spec:
         runtimeClassName: nvidia
         config:
           deviceDiscoveryStrategy: legacy
-        # DISABLE extras that also fail CDI
+        deviceListStrategy: envvar
+        securityContext:
+          capabilities:
+            add:
+            - SYS_ADMIN
+            drop: []
+          allowPrivilegeEscalation: true
+        nodeSelector:
+          nvidia.com/gpu.present: "true"
         dcgmExporter:
           enabled: false
         mpsControlDaemon:
