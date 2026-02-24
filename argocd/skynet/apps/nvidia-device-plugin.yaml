@@ -44,7 +44,24 @@ spec:
         - key: nvidia.com/gpu
           operator: Exists
           effect: NoSchedule
+        nodeSelector:
+          nvidia.com/gpu.present: "true"
+        config:
+          map:
+            default: |-
+              version: v1
+              flags:
+                migStrategy: none
+                failOnInitError: false
+              plugin:
+                deviceListStrategy: envvar
+                passDeviceSpecs: false
+          default: default
         dcgmExporter:
+          enabled: false
+        nfd:
+          enabled: false
+        gfd:
           enabled: false
         mpsControlDaemon:
           enabled: false
