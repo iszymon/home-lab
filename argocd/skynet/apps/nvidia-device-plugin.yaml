@@ -38,17 +38,21 @@ spec:
             memory: 64Mi
         runtimeClassName: nvidia
         config:
-          deviceDiscoveryStrategy: legacy
-        deviceListStrategy: envvar
+          name: nvidia-device-plugin-config
+          deviceListStrategy: envvar
         securityContext:
-          capabilities:
-            add:
-            - SYS_ADMIN
-            drop: []
+          privileged: true  # Full privileged for NVML/host libs access
           allowPrivilegeEscalation: true
         nodeSelector:
           nvidia.com/gpu.present: "true"
+        tolerations:
+        - key: nvidia.com/gpu
+          operator: Exists
+          effect: NoSchedule
         dcgmExporter:
           enabled: false
         mpsControlDaemon:
+          enabled: false
+        # Force legacy, disable CDI hooks
+        containerRuntime:
           enabled: false
