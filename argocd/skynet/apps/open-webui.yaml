@@ -21,7 +21,7 @@ spec:
   source:
     repoURL: https://helm.openwebui.com/
     chart: open-webui
-    targetRevision: 8.14.0
+    targetRevision: 10.2.1
     helm:
       values: |-
         nameOverride: open-webui
