@@ -29,6 +29,7 @@ spec:
       values: |-
         nameOverride: nvidia-device-plugin
         fullnameOverride: nvidia-device-plugin
+        runtimeClassName: ""
         resources:
           limits:
             cpu: 50m
@@ -36,25 +37,15 @@ spec:
           requests:
             cpu: 10m
             memory: 64Mi
-        runtimeClassName: nvidia
-        # Inline config map to avoid external CM dependency
-        config:
-          map:
-            default: |-
-              version: v1
-              deviceListStrategy: envvar
-              flags:
-                migStrategy: none
-          default: default
         securityContext:
           privileged: true
           allowPrivilegeEscalation: true
-        nodeSelector:
-          nvidia.com/gpu.present: "true"
         tolerations:
         - key: nvidia.com/gpu
           operator: Exists
           effect: NoSchedule
+        nodeSelector:
+          nvidia.com/gpu.present: "true"
         dcgmExporter:
           enabled: false
         mpsControlDaemon:
