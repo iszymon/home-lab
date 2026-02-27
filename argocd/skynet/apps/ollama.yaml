@@ -40,6 +40,8 @@ spec:
               - qwen3:30b-a3b-instruct-2507-q4_K_M
               - qwen3-vl:8b
               - glm-4.7-flash:q4_K_M
+              - deepseek-r1:14b
+              - deepseek-r1:7b
             run: []
             create: []
               # - name: embeddinggemma-32768
@@ -56,8 +58,8 @@ spec:
           size: 200Gi
         extraEnv:
           - name: OLLAMA_CONTEXT_LENGTH
-            # value: "49152"
-            value: "100000"
+            value: "49152"
+            # value: "100000"
         runtimeClassName: nvidia
         ingress:
           enabled: true
