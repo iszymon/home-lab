@@ -27,7 +27,7 @@ spec:
         nameOverride: ollama
         fullnameOverride: ollama
         image:
-          tag: "0.5.5-rc2"
+          tag: "0.15.5-rc2"
         ollama:
           gpu:
             enabled: true
