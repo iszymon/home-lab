@@ -44,7 +44,13 @@ spec:
     server: https://kubernetes.default.svc
   - namespace: kubelet-serving-cert-approver
     server: https://kubernetes.default.svc
-  - namespace: gpu-operator
+  - namespace: cloudnative-pg
+    server: https://kubernetes.default.svc
+  - namespace: kan
+    server: https://kubernetes.default.svc
+  - namespace: indicator
+    server: https://kubernetes.default.svc
+  - namespace: gateway-api
     server: https://kubernetes.default.svc
   # Needed by kubelet-serving-cert-approver to create role binding
   - namespace: default

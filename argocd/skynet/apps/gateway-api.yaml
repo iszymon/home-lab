@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: reflector
+  name: gateway-api
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: 'reflector'
+    namespace: 'gateway-api'
     server: 'https://kubernetes.default.svc'
   project: apps
   syncPolicy:
@@ -18,18 +18,8 @@ spec:
     - CreateNamespace=true
     - ApplyOutOfSyncOnly=true
     - PruneLast=true
+    - ServerSideApply=true
   source:
-    repoURL: https://emberstack.github.io/helm-charts
-    chart: reflector
-    targetRevision: 9.1.45
-    helm:
-      values: |-
-        nameOverride: reflector
-        fullnameOverride: reflector
-        resources:
-          requests:
-            cpu: 10m
-            memory: 64Mi
-          limits:
-            cpu: 50m
-            memory: 100Mi
+    path: 'argocd/kustomize/gateway-api'
+    repoURL: https://github.com/iszymon/home-lab.git
+    targetRevision: HEAD

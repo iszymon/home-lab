@@ -24,6 +24,8 @@ locals {
   ]
 
   is_sbc_platform = contains(local.sbc_platforms, var.platform)
+  # Check if contrib extensions are specified (explicitly check for non-empty list)
+  build_talos = length(var.contrib_extension_names) > 0
 }
 
 data "talos_image_factory_versions" "this" {
@@ -60,10 +62,28 @@ resource "talos_image_factory_schematic" "this" {
 
 data "talos_image_factory_urls" "this" {
   depends_on = [null_resource.force_url_recompute]
-  
+
   talos_version = element(data.talos_image_factory_versions.this.talos_versions, length(data.talos_image_factory_versions.this.talos_versions) - 1)
   schematic_id  = talos_image_factory_schematic.this.id
 
   platform = local.is_sbc_platform ? null : var.platform
   sbc      = local.is_sbc_platform ? var.platform : null
+}
+
+# Run custom script only when contrib_extension_names is populated
+resource "null_resource" "build_talos" {
+  count = local.build_talos ? 1 : 0
+
+  provisioner "local-exec" {
+    command = "flock $LOCK_FILE --command ${path.module}/scripts/build-talos.sh"
+
+    environment = {
+      LOCK_FILE = "${path.module}/scripts/.build-talos.lock"
+
+      TALOS_VERSION                  = element(data.talos_image_factory_versions.this.talos_versions, length(data.talos_image_factory_versions.this.talos_versions) - 1)
+      TALOS_ARCH                     = local.is_sbc_platform ? "arm64" : "amd64"
+      TALOS_CONTRIB_EXTENSION_NAMES  = join(",", var.contrib_extension_names)
+      TALOS_IMAGE_CONTAINER_REGISTRY = var.image_container_registry
+    }
+  }
 }

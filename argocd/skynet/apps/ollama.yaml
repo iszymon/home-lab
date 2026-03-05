@@ -21,13 +21,13 @@ spec:
   source:
     repoURL: https://otwld.github.io/ollama-helm/
     chart: ollama
-    targetRevision: 1.41.0
+    targetRevision: 1.48.0
     helm:
       values: |-
         nameOverride: ollama
         fullnameOverride: ollama
         image:
-          tag: "0.15.5-rc2"
+          tag: "0.17.6"
         ollama:
           gpu:
             enabled: true
@@ -35,41 +35,29 @@ spec:
             number: 2
           models:
             pull:
-              - qwen3-coder:30b-a3b-q4_K_M
               - qwen3-embedding:8b-fp16
-              - qwen3:30b-a3b-instruct-2507-q4_K_M
+              - qwen3.5:27b-q4_K_M
               - qwen3-vl:8b
               - glm-4.7-flash:q4_K_M
-              - deepseek-r1:14b
-              - deepseek-r1:7b
             run: []
             create: []
-          clean: true
+              # - name: embeddinggemma-32768
+              #   template: |
+              #     FROM embeddinggemma:300m
+              #     PARAMETER num_ctx 32768
+            clean: true
         resources:
           requests:
             memory: 4Gi
             cpu: 2
-          limits:
-            memory: 32Gi  # Dual 3060 VRAM
-            cpu: 8
-            nvidia.com/gpu: "2"  # Explicit
         persistentVolume:
           enabled: true
           size: 200Gi
-        runtimeClassName: nvidia
         extraEnv:
-          - name: OLLAMA_HOST
-            value: "0.0.0.0:11434"
-          - name: CUDA_VISIBLE_DEVICES
-            value: "0,1"  # **FIX: Both GPUs**
-          - name: OLLAMA_FLASH_ATTENTION
-            value: "1"
-          - name: OLLAMA_TENSOR_SPLIT
-            value: "0.6,0.4"  # **FIX: Optimal split**
-          - name: OLLAMA_NUM_PARALLEL
-            value: "4"
           - name: OLLAMA_CONTEXT_LENGTH
+            # value: "10152"
             value: "100000"
+        runtimeClassName: nvidia
         ingress:
           enabled: true
           className: "nginx"

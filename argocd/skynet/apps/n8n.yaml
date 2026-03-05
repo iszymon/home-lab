@@ -22,13 +22,13 @@ spec:
     repoURL: '8gears.container-registry.com/library'
     chart: n8n
     path: n8n
-    targetRevision: 1.1.0
+    targetRevision: 2.0.1
     helm:
       values: |-
         nameOverride: n8n
         fullnameOverride: n8n
         image:
-          tag: "1.120.2"
+          tag: "2.6.2"
         ingress:
           enabled: true
           annotations:
@@ -38,7 +38,8 @@ spec:
           hosts:
             - host: n8n.idena.wf
               paths:
-                - "/"
+                - path: "/"
+                  pathType: Prefix
           tls:
             - hosts:
                 - n8n.idena.wf
@@ -53,6 +54,8 @@ spec:
               value: "https://n8n.idena.wf"
             WEBHOOK_URL:
               value: "https://n8n.idena.wf"
+            N8N_PAYLOAD_SIZE_MAX:
+              value: "268435456"
           # extraVolumes:
           #   - name: share
           #     persistentVolumeClaim:
