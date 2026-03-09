@@ -56,7 +56,7 @@ spec:
         extraEnv:
           - name: OLLAMA_CONTEXT_LENGTH
             # value: "10152"
-            value: "40000"
+            value: "20000"
         runtimeClassName: nvidia
         ingress:
           enabled: true
