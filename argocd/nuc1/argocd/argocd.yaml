@@ -48,7 +48,7 @@ spec:
                 syncOptions:
                 - CreateNamespace=true
               source:
-                path: argocd/skynet
+                path: argocd/nuc1
                 repoURL: https://github.com/iszymon/home-lab.git
                 targetRevision: HEAD
                 directory:
