@@ -79,17 +79,6 @@ spec:
             scrapeInterval: 10s
             externalLabels:
               cluster: nuc1
-            inlineScrapeConfig: |
-              - job_name: 'ingress-nginx-endpoints'
-                metrics_path: '/metrics'
-                scheme: http
-                static_configs:
-                  - targets: ['ingress-nginx-controller-metrics.ingress-nginx.svc.cluster.local:10254']
-              - job_name: 'gpu'
-                metrics_path: '/metrics'
-                scheme: http
-                static_configs:
-                  - targets: ['dcgm-exporter.nvidia-device-plugin.svc.cluster.local:9400']
         grafana:
           enabled: true
           resources:
@@ -105,10 +94,10 @@ spec:
               kubernetes.io/ingress.class: nginx
             pathType: Prefix
             hosts:
-              - monitoring.idena.wf
+              - monitoring.nuc1.idena.wf
             tls:
             - hosts:
-              - monitoring.idena.wf
+              - monitoring.nuc1.idena.wf
               secretName: tls-wildcard-nuc1-idena-wf
           defaultDashboardsTimezone: cet
           admin:
@@ -117,7 +106,7 @@ spec:
             passwordKey: password
         kubeEtcd:
           endpoints:
-            - 192.168.3.25
+            - 192.168.3.21
           service:
             port: 2381
             targetPort: 2381
