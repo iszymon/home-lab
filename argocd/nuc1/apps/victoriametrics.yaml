@@ -78,7 +78,7 @@ spec:
                 memory: 120Mi
             scrapeInterval: 10s
             externalLabels:
-              cluster: skynet
+              cluster: nuc1
             inlineScrapeConfig: |
               - job_name: 'ingress-nginx-endpoints'
                 metrics_path: '/metrics'
