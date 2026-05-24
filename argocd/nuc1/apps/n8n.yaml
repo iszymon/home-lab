@@ -36,13 +36,13 @@ spec:
             nginx.ingress.kubernetes.io/ssl-redirect: "true"
           className: "nginx"
           hosts:
-            - host: n8n.idena.wf
+            - host: n8n.nuc1.idena.wf
               paths:
                 - path: "/"
                   pathType: Prefix
           tls:
             - hosts:
-                - n8n.idena.wf
+                - n8n.nuc1.idena.wf
               secretName: tls-wildcard-nuc1-idena-wf
         main:
           persistence:
@@ -51,9 +51,9 @@ spec:
             size: 5Gi
           extraEnv:
             N8N_EDITOR_BASE_URL:
-              value: "https://n8n.idena.wf"
+              value: "https://n8n.nuc1.idena.wf"
             WEBHOOK_URL:
-              value: "https://n8n.idena.wf"
+              value: "https://n8n.nuc1.idena.wf"
             N8N_PAYLOAD_SIZE_MAX:
               value: "268435456"
           # extraVolumes:
